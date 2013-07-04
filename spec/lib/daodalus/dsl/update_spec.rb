@@ -113,14 +113,6 @@ module Daodalus
         end
       end
 
-      describe "#upsert" do
-        it "adds the upsert flag to the update clause" do
-          dao.should_receive(:update).
-            with({}, {}, {:upsert => true})
-          update.upsert
-        end
-      end
-
     end
   end
 end

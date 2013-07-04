@@ -7,13 +7,13 @@ require 'rspec'
 require 'daodalus'
 require_relative 'support/all'
 
-Daodalus::Configuration.load('spec/support/test_config.yml', :test)
-
 class DBCleaner
+  extend Daodalus::DAO
+
+  target :animalhouse, :cats
+
   def self.clean
-    Daodalus::Pool.instance.connections.each do |_, conn|
-      conn.drop_database
-    end
+    remove_all
   end
 end
 
@@ -25,4 +25,6 @@ RSpec.configure do |config|
   config.before(:all) { DBCleaner.clean }
 end
 
-
+conn = Moped::Session.new(['localhost:27017'])
+Daodalus::Connection.register(conn, :animalhouse)
+Daodalus::Connection.register(conn, :cathouse)

@@ -2,40 +2,36 @@ module Daodalus
   module DAO
     include DSL
 
-    def save(*args)
-      collection.save(*args)
+    def find_one(query={}, select={}, options={})
+      collection.where(query).select(select).one
     end
 
-    def find_one(*args)
-      collection.find_one(*args)
+    def find(query={}, select={}, options={})
+      collection.where(query).select(select)
     end
 
-    def find(*args)
-      collection.find(*args)
+    def insert(data={}, options={})
+      collection.insert(data)
     end
 
-    def insert(*args)
-      collection.insert(*args)
+    def update(query={}, update={}, options={})
+      collection.where(query).update(update)
     end
 
-    def update(*args)
-      collection.update(*args)
-    end
-
-    def remove(*args)
-      collection.remove(*args)
+    def remove(criteria={}, options={})
+      collection.where(criteria).remove_all
     end
 
     def remove_all
-      collection.remove
+      collection.where.remove_all
     end
 
-    def count(*args)
-      collection.find(*args).count
+    def count(query={}, options={})
+      collection.find(query).count
     end
 
-    def find_and_modify(*args)
-      collection.find_and_modify(*args)
+    def find_and_modify(query={}, update={}, options={})
+      collection.find(query).modify(update, options)
     end
 
     def aggregate(*args)
@@ -53,12 +49,10 @@ module Daodalus
       @collection_name || self.class.collection_name
     end
 
-    def db
-      Daodalus::Pool.instance[connection_name].db
-    end
-
     def collection
-      db[collection_name]
+      @collection ||= Daodalus::Connection.fetch(connection_name).tap do |conn|
+        conn.use(connection_name)
+      end[collection_name.to_s]
     end
 
     module Targetable

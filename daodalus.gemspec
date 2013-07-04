@@ -6,8 +6,7 @@ Gem::Specification.new do |gem|
   gem.summary       = gem.description
   gem.homepage      = "http://github.com/onthebeach/daodalus"
 
-  gem.add_runtime_dependency 'mongo', '~> 1.8.0'
-  gem.add_runtime_dependency 'bson_ext', '~> 1.8.0'
+  gem.add_runtime_dependency 'moped'
   gem.add_runtime_dependency 'wendy'
 
   gem.add_development_dependency 'rspec'

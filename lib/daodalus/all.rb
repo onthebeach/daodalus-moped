@@ -1,6 +1,6 @@
-require_relative 'configuration'
 require_relative 'connection'
-require_relative 'pool'
 require_relative 'dsl/all'
 require_relative 'dsl'
 require_relative 'dao'
+require_relative 'invalid_connection_error'
+require_relative 'invalid_query_error'

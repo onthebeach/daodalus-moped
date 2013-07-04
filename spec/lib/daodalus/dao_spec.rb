@@ -30,15 +30,6 @@ module Daodalus
         TestDAO.insert(name: 'Felix', paws: 4)
       end
 
-      describe "#save" do
-        it 'creates or updates a record' do
-          TestDAO.save(name: 'Calhoun')
-          TestDAO.find(name: 'Calhoun').count.should eq 1
-          TestDAO.save(TestDAO.find_one(name: 'Calhoun'))
-          TestDAO.find(name: 'Calhoun').count.should eq 1
-        end
-      end
-
       describe "#find_one" do
         it "performs a find_one command" do
           TestDAO.find_one(name: "Felix").fetch('paws').should eq 4
@@ -88,7 +79,7 @@ module Daodalus
 
       describe "#find_and_modify" do
         it "returns a find_and_modify" do
-          TestDAO.find_and_modify('query' => {name: 'Felix'}, 'update' => {'$inc' =>{'paws' => 2}})
+          TestDAO.find_and_modify({name: 'Felix'}, {'$inc' =>{'paws' => 2}})
           TestDAO.find_one.fetch('paws').should eq 6
         end
       end

@@ -1,3 +1,3 @@
-require 'mongo'
+require 'moped'
 require 'wendy'
 require 'daodalus/all'

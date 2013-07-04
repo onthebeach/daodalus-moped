@@ -39,8 +39,8 @@ module Daodalus
           sort([:name, -1]).
           map{|r| r.delete('_id'); r}.
           should eq [
-            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
             {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3},
+            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
             {'name' => 'Cat', 'stray' => true, 'paws' => 3}
         ]
       end
@@ -61,8 +61,8 @@ module Daodalus
           sort([:name, -1]).
           map{|r| r.delete('_id'); r}.
           should eq [
-            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
             {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3},
+            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
             {'name' => 'Cat', 'stray' => true, 'paws' => 3}
         ]
       end
@@ -83,8 +83,8 @@ module Daodalus
           sort([:name, -1]).
           map{|r| r.delete('_id'); r}.
           should eq [
-            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
-            {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3}
+            {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3},
+            {'name' => 'Louise', 'stray' => false, 'paws' => 3}
         ]
       end
 
@@ -138,9 +138,9 @@ module Daodalus
           sort([:name, -1]).
           map{|r| r.delete('_id'); r}.
           should eq [
-            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
-            {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3},
             {'name' => 'Felix', 'stray' => false, 'paws' => 4},
+            {'name' => 'Jeffrey', 'stray' => false, 'paws' => 3},
+            {'name' => 'Louise', 'stray' => false, 'paws' => 3},
             {'name' => 'Cat', 'stray' => true, 'paws' => 3}
         ]
       end
